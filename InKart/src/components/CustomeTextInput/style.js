@@ -23,7 +23,7 @@ const styles = StyleSheet.create({
     emailIcon : {
         width : 18,
         height : 18,
-        marginRight:10,
+        marginRight : 10,
     }
 })
 

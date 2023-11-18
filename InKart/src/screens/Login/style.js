@@ -31,6 +31,12 @@ const styles = StyleSheet.create({
         paddingTop: height*0.024,
         color : colors.steel
 
+    },
+    CreateNew : {
+        fontFamily : 'Poppins-regular',
+        fontSize : 14,
+        textAlign : 'center',
+        marginVertical : width*0.05
     }
 })
 

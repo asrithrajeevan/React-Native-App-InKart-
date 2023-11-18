@@ -11,8 +11,9 @@ const color = {
     iron : '#48494b',
     shadow : '#363636',
     steel : '#777b7e',
-    primaryGreen : '#2E782F',
-    lightGreen : '#E0FFD2'
+    primaryGreen : '#2e8b57',
+    lightGreen : '#E0FFD2',
+    secondaryGreen : '#4A7C00'
 }
 
 export default color
