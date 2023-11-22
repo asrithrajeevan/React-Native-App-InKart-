@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "863292192579",
+    "project_id": "inkart-4487a",
+    "storage_bucket": "inkart-4487a.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:863292192579:android:1d970f2ac08eaea993a1f6",
+        "android_client_info": {
+          "package_name": "com.inkart"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDnydJpD3ku0YwAVfj8fLVBdKCuiPb0Fpk"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
