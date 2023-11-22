@@ -6,6 +6,8 @@ import CostomeBotton from "../../components/CostomeBotton";
 import { useNavigation } from "@react-navigation/native";
 import  firestore from "@react-native-firebase/firestore";
 import { EmailValidation, validatePhoneNumber } from "../../components/common/validations";
+import Snackbar from "react-native-snackbar";
+import color from "../../components/common/colors";
 
 const SignUp = () => {
     const [getUsername, setUsername] = useState('')
@@ -37,8 +39,8 @@ const SignUp = () => {
                     //checking if any other account is existing or not using username and email
                     await firestore().collection('Users')
                     .where('username','==',getUsername.trim())  // we checking if the user entered username and filestore user name is existing using '==' operator. 
-                    .where('email', '==', getEmail.trim()).get().then(async snapshot => {
-                        if(snapshot.empty){
+                    .where('email', '==', getEmail.trim()).get().then(async snapshot => { // We using the await into this snapshot so we should use the async.
+                        if(snapshot.empty){ // We can check if there is any value is existing or not using 'empty'.
                             // if the account is empty 'if(true)' there is no other account exist.
                             if(EmailValidation(getEmail)){
                                 if(validatePhoneNumber(getMobile)){
@@ -51,8 +53,10 @@ const SignUp = () => {
                                         created : String(new Date()),
                                         updated : String(new Date()),
                                     }
-                                    await firestore().collection('Users').add(userData).then( resp =>{  // Users is a collection name of our table, we created on firestore. And we give our response on then function. 
-                                        console.warn(resp)
+
+                                    // Saving data to firestore
+                                    await firestore().collection('Users').add(userData).then(resp => {  // Users is a collection name of our table, we created on firestore. And we give our response on then function. 
+                                        console.warn(resp)                                      // an object will get after saving the data
                                     }).catch(err => {                                           // We give the error in the catch function.
                                         console.warn(err);
                                     })
@@ -65,6 +69,11 @@ const SignUp = () => {
                             }
                         }else{
                             // usage of snap bar packages. 
+                            Snackbar.show({
+                                text: 'This email is already existing our system try another email.',
+                                backgroundColor : color.red,
+                                duration: Snackbar.LENGTH_LONG,
+                            });
                         }
                     })
                 }else{
