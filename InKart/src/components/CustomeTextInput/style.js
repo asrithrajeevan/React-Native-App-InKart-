@@ -6,19 +6,19 @@ const styles = StyleSheet.create({
     textInput : {
         color : color.black_level_3,
         fontSize : 15,
-        fontFamily : 'Poppins-Regular',
-        width : '90%'
+        fontFamily : 'Lato-Regular',
+        width : '90%',
     },
     container: {
         flexDirection : 'row',
         alignItems :'center',
         justifyContent :'space-between',
         backgroundColor : color.lightGreen,
-        padding : width * 0.01,
+        padding : width * 0.0441, //width * 0.01, 
         borderRadius : 10,
         marginVertical : 10,
         borderColor : 'grey',
-        borderWidth : 1
+        borderWidth : 1,
     },
     emailIcon : {
         width : 18,

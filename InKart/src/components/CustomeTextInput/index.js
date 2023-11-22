@@ -11,14 +11,21 @@ const CustomeTextInput = props => {
         type === 'email'
         ? 'email-address'
         : type === 'password'
-        ? 'default' : 'default'
+        ? 'default' 
+        : type === 'mobile'
+        ? 'numeric' : 'default'
+        
 
         const handleEye = () => {
             setEye(eyeIon ? false : true)
         }
 
-        const secureTextEntry = type ==='password' ? (eyeIon ? true : false) : false ;
-        const icon = type === 'email' ? require('../../assets/images/email.png') : eyeIon ?  require('../../assets/images/eyeClose.png') : require('../../assets/images/eyeOpen.png') ;
+        const secureTextEntry = type === 'password' ? (eyeIon ? true : false) : false ;
+        const icon = type === 'email' 
+            ? require('../../assets/images/email.png') 
+            : type ==='password' ?
+                eyeIon ?  require('../../assets/images/eyeClose.png') : require('../../assets/images/eyeOpen.png')
+            :false
     return (
         <View style={styles.container}>
         <TextInput 
@@ -28,6 +35,7 @@ const CustomeTextInput = props => {
             secureTextEntry={secureTextEntry}
             style={styles.textInput}
             selectionColor={color.primaryGreen}
+            autoCapitalize={type==='email'? "none":'characters'}
         />
         
         <TouchableOpacity disabled={type==='password'? false : true} onPress={handleEye}>

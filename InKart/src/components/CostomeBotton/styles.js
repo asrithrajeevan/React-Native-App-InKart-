@@ -12,8 +12,8 @@ const styles = StyleSheet.create({
         marginVertical : 10,
     },
     Logo : {
-        width : width*0.08,
-        height : width*0.08,
+        width : width*0.07,
+        height : width*0.07,
         marginRight : width*0.01,
     }
 })

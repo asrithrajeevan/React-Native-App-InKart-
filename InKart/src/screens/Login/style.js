@@ -26,17 +26,47 @@ const styles = StyleSheet.create({
         resizeMode : 'contain', // 'contain' stands for the picture must contain with the given height and weight
     },
     loginText : {
-        fontFamily : 'Poppins-Bold',
+        fontFamily : 'Lato-Bold',
         fontSize : 20,
         paddingTop: height*0.024,
         color : colors.steel
 
     },
     CreateNew : {
-        fontFamily : 'Poppins-regular',
+        fontFamily : 'Lato-regular',
         fontSize : 14,
         textAlign : 'center',
+        color : colors.steel,
         marginVertical : width*0.05
+    },
+    footer : {
+        alignItems : 'center',
+        justifyContent : 'center',
+        padding : 15,
+        backgroundColor : colors.lightGreen,
+        borderTopWidth:5,
+        borderColor:colors.white
+    },
+    footerText : {
+        color : colors.black_level_3,
+        fontFamily : 'Lato-regular'
+    },
+    dottedLineContainer : {
+        flexDirection:'row',
+        alignItems:'center',
+        marginVertical:10,
+    },
+    dottedLine : {
+        flex:1,
+        borderStyle:'dashed',
+        borderWidth:1,
+        color: colors.grey,
+    },
+    dashedText:{
+        backgroundColor:'white',
+        fontFamily:'Lato-Regular',
+        fontSize:15,
+        padding:5
     }
 })
 

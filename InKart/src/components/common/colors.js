@@ -13,7 +13,8 @@ const color = {
     steel : '#777b7e',
     primaryGreen : '#2e8b57',
     lightGreen : '#E0FFD2',
-    secondaryGreen : '#4A7C00'
+    secondaryGreen : '#4A7C00',
+    red : '#FF0000'
 }
 
 export default color
