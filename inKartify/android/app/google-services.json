@@ -1,0 +1,54 @@
+{
+  "project_info": {
+    "project_number": "903118379962",
+    "project_id": "inkart-bff47",
+    "storage_bucket": "inkart-bff47.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:903118379962:android:786f7fdb1c3cb4d32cdb83",
+        "android_client_info": {
+          "package_name": "com.inkartify"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "903118379962-95m9qmf1s4gq8olfsfimis4fc85nq5lp.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.inkartify",
+            "certificate_hash": "5e8f16062ea3cd2c4a0d547876baa6f38cabf625"
+          }
+        },
+        {
+          "client_id": "903118379962-dia4e1hqpphhjlve3dpkd7bvgvqedg81.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAJGnHj7wgL7Vidf8v0vDuVtSdXaApS-ho"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "903118379962-dia4e1hqpphhjlve3dpkd7bvgvqedg81.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "903118379962-0dmcio8nm6da2dl8k17cdmn4mv6dkdhr.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "org.reactjs.native.example.inKartify"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

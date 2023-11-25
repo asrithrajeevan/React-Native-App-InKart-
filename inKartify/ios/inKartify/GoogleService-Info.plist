@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>CLIENT_ID</key>
+	<string>903118379962-0dmcio8nm6da2dl8k17cdmn4mv6dkdhr.apps.googleusercontent.com</string>
+	<key>REVERSED_CLIENT_ID</key>
+	<string>com.googleusercontent.apps.903118379962-0dmcio8nm6da2dl8k17cdmn4mv6dkdhr</string>
+	<key>ANDROID_CLIENT_ID</key>
+	<string>903118379962-95m9qmf1s4gq8olfsfimis4fc85nq5lp.apps.googleusercontent.com</string>
+	<key>API_KEY</key>
+	<string>AIzaSyDvojjPr0_yVzzsur_D2GVjJrebhAERc_E</string>
+	<key>GCM_SENDER_ID</key>
+	<string>903118379962</string>
+	<key>PLIST_VERSION</key>
+	<string>1</string>
+	<key>BUNDLE_ID</key>
+	<string>org.reactjs.native.example.inKartify</string>
+	<key>PROJECT_ID</key>
+	<string>inkart-bff47</string>
+	<key>STORAGE_BUCKET</key>
+	<string>inkart-bff47.appspot.com</string>
+	<key>IS_ADS_ENABLED</key>
+	<false></false>
+	<key>IS_ANALYTICS_ENABLED</key>
+	<false></false>
+	<key>IS_APPINVITE_ENABLED</key>
+	<true></true>
+	<key>IS_GCM_ENABLED</key>
+	<true></true>
+	<key>IS_SIGNIN_ENABLED</key>
+	<true></true>
+	<key>GOOGLE_APP_ID</key>
+	<string>1:903118379962:ios:9ad5aa7aa6b04c632cdb83</string>
+	<key>DATABASE_URL</key>
+	<string>https://inkart-bff47-default-rtdb.asia-southeast1.firebasedatabase.app</string>
+</dict>
+</plist>
