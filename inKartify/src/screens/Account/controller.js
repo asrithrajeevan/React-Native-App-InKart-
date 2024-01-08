@@ -6,15 +6,15 @@ export const updateProfileImage = async (image) => {
   return new Promise(async resolve => {
     try {
       const filename = image.substring(image.lastIndexOf("/") + 1);
-      console.warn('filename==>>',filename)
+      // console.warn('filename==>>',filename)
       const pathForFirebaseStorage = await getPathForFirebaseStorage(image);
-      console.warn('pathForFirebaseStorage==>>',pathForFirebaseStorage)
+      // console.warn('pathForFirebaseStorage==>>',pathForFirebaseStorage)
 
       await storage().ref(filename).putFile(pathForFirebaseStorage).then().catch(err=>{
-        console.warn('err2===>>',err)
+        // console.warn('err2===>>',err)
       })
       await storage().ref(filename).getDownloadURL().then(url => {
-        console.log('resolve---url--->',url);
+        // console.log('resolve---url--->',url);
         resolve(url);
       }).catch(err=>{
         console.warn('err1=====>>>',err)
@@ -80,7 +80,7 @@ export const validatePhoneNumber = (phoneNumber) =>{
 export const validateEmail = (email) => {
     // Define the regex pattern for email validation
     var emailPattern = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/;
-    console.warn(emailPattern.test(email));
+    // console.warn(emailPattern.test(email));
     // Test the email against the pattern
     return emailPattern.test(email);
 }

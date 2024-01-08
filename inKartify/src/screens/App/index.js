@@ -2,7 +2,7 @@ import 'react-native-gesture-handler';
 import React, { useEffect, useState } from "react";
 import { NavigationContainer, useNavigation } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
-
+import { enableLatestRenderer } from 'react-native-maps'; // for using map
 import Login from "../Login";
 import SignUp from "../SignUp";
 import LogInWithPhone from "../LogInWithPhone";
@@ -24,6 +24,9 @@ import { Provider, useSelector } from 'react-redux';
 import { store } from '../../storage/store';
 import SplashScreen from '../Splash';
 import Shop from '../Shop';
+import ProductDetails from '../ProductDetails';
+import Review from '../Review';
+import AddAddress from '../AddAddress';
 
 const Drawer = createDrawerNavigator()
 const AppStack = createNativeStackNavigator()
@@ -31,14 +34,16 @@ const Footer = createBottomTabNavigator();
 
 function AppDrawer() {
   return (
-    <Drawer.Navigator drawerContent={ ()=><CustomeDrawer />}>
+    <Drawer.Navigator drawerContent={ ()=><CustomeDrawer />} screenOptions={{headerStyle:{height:100}}} >
       <Drawer.Screen name="AppFooter" component={AppFooter} options={{headerShown:false}}/>
       <Drawer.Screen name="Category" component={Category}/>
       <Drawer.Screen name="Orders" component={Orders} />
       <Drawer.Screen name="Wishlist" component={Wishlist} />
       <Drawer.Screen name="Account" component={Account} />
       <Drawer.Screen name="Shop" component={Shop} />
-
+      <Drawer.Screen name="ProductDetails" component={ProductDetails} />
+      <Drawer.Screen name="Review" component={Review} />
+      <Drawer.Screen name="AddAddress" component={AddAddress} />
     </Drawer.Navigator>
   );
 }
@@ -81,7 +86,7 @@ const AppNavigation = () => {
   const [loading, setLoading] = useState(true)
 
   useEffect(()=>{
-    console.log("is first");
+    // console.log("is first");
     setTimeout(() => {
       setLoading(false)
     }, 2000);
@@ -113,6 +118,9 @@ const AppNavigation = () => {
 }
 
 const App = () =>{
+  useEffect(()=>{
+    enableLatestRenderer()
+  },[])
   return(
     <Provider store={store}>
       <AppNavigation />

@@ -1,6 +1,6 @@
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { persistStore, persistReducer } from "redux-persist";
-import { configureStore ,getDefaultMiddleware} from "@reduxjs/toolkit";
+import { configureStore } from "@reduxjs/toolkit";
 import { InKartReducer } from "./reducer";
 
 const persistConfig = {

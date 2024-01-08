@@ -14,7 +14,7 @@ const CustomeDrawer = () =>{
     const responsiveStyle = style(dimensions.windowHeight, dimensions.windowWidth);
     const dispatch = useDispatch()
     const {firstName, lastName, email, profileImage} = useSelector(state => state); // we can aceess the global state like this
-    console.log('profileImage--->',profileImage);
+    // console.log('profileImage--->',profileImage);
 
     const drawerContent = [
         {

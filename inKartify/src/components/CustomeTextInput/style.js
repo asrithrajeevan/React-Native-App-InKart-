@@ -6,7 +6,7 @@ const styles = (height, width, portrait) => StyleSheet.create({
         color : color.black_level_3,
         fontSize : 16,
         fontFamily : 'Lato-Regular',
-        width : '90%',
+        width : '87%',
     },
     container: {
         flexDirection : 'row',
@@ -23,6 +23,12 @@ const styles = (height, width, portrait) => StyleSheet.create({
         width : 18,
         height : 18,
         marginRight : 10,
+    },
+    checkText:{
+        fontFamily:'Lato-Bold',
+        color:color.primaryGreen,
+        fontSize:15,
+        fontWeight:'800',
     }
 })
 

@@ -34,6 +34,9 @@ const style = (height, width, portrait)=> StyleSheet.create({
         fontSize:14, 
         color:color.Green
     },
+    orderedOn:{
+        fontWeight:'700'
+    },
     address1:{
         fontFamily:'Lato-Regilar', 
         fontSize:14, 

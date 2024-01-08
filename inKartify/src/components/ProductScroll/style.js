@@ -10,7 +10,7 @@ const style = (height, width) => StyleSheet.create({
     },
     scrollView:{
         // marginTop:0,
-        marginHorizontal:15,
+        marginHorizontal:10,
         marginBottom:15,
         // backgroundColor:color.FernGreen
     },
@@ -35,7 +35,8 @@ const style = (height, width) => StyleSheet.create({
         width:85,
         height:85, 
         alignSelf:'center',
-        marginVertical:10
+        marginVertical:10,
+        resizeMode:'contain',
     },
     itemName:{
         fontFamily:'Lato-Black', 

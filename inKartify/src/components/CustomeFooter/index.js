@@ -1,7 +1,10 @@
-import React, { version } from "react";
+import React, { useEffect } from "react";
 import { Image, Text, TouchableOpacity, View } from "react-native";
 import style from "./style";
 import { useDimentionsContext } from "../../context";
+import { useDispatch, useSelector } from "react-redux";
+import firestore  from "@react-native-firebase/firestore";
+import { updateCartCount } from "../../storage/action";
 
 const CustomFooter = ({state, descriptors, navigation}) => {
     // state.routes.map((routes, index)=>{
@@ -9,6 +12,20 @@ const CustomFooter = ({state, descriptors, navigation}) => {
     // })
     const dimensions = useDimentionsContext()
     const responsiveStyle = style(dimensions.windowHeight, dimensions.windowWidth, dimensions.portrait)
+    const {cartCount, userId} = useSelector(state => state)
+    console.warn('cartCount->->',cartCount);
+    const dispatch = useDispatch()
+    
+    useEffect(()=>{
+        getCartProduct()
+    },[])
+
+    const getCartProduct = async () =>{
+        await firestore().collection('Cart').get().then(snapshot=>{
+            console.warn('snapsize==>>',snapshot.size); 
+            dispatch(updateCartCount(snapshot.size))
+        }).catch(err=>console.log('err--->',err))      
+    }
     // console.log(dimensions);
         return(
             <View style={responsiveStyle.container}>
@@ -32,7 +49,7 @@ const CustomFooter = ({state, descriptors, navigation}) => {
                             <Image source={icon} style={responsiveStyle.iconStyle}/>
                             <Text style={responsiveStyle.footerText}>{routes.name}</Text>
                             {isFocused? <Text style={responsiveStyle.dotStyle}>_</Text>:null}
-                            {routes.name=='Cart'? <View style={responsiveStyle.cartCountView}><Text style={responsiveStyle.count}>10</Text></View>:null}
+                            {cartCount < 1 ? null:routes.name=='Cart'? <View style={responsiveStyle.cartCountView}><Text style={responsiveStyle.count}>{cartCount}</Text></View>:null}
                         </TouchableOpacity>
                     )
                 } )}

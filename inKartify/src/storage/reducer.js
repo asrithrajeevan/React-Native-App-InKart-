@@ -1,4 +1,4 @@
-import { LOGIN, SIGNOUT, UPDATECATEGORIES, UPDATEPROFILE } from "./constance";
+import { LOGIN, SIGNOUT, UPDATECATEGORIES, UPDATEPROFILE, UPDATECARTCOUNT} from "./constance";
 
 const initialState = {
     userId : '',
@@ -9,6 +9,7 @@ const initialState = {
     profileImage : '',
     isLoged : false,
     updateCategories : [],
+    cartCount : 0
 }
 export const InKartReducer = (state = initialState, action) =>{
 
@@ -45,10 +46,15 @@ export const InKartReducer = (state = initialState, action) =>{
                 profileImage : action.payload.profileImage,
             };
         case UPDATECATEGORIES:
-            console.warn('action.payload.categories--->',action.payload.updateCategories)
+            // console.warn('action.payload.categories--->',action.payload.updateCategories)
             return{
                 ...state,
                 updateCategories : [...action.payload.updateCategories],
+            };
+        case UPDATECARTCOUNT:
+            return{
+                ...state,
+                cartCount : action.payload.cartCount,
             }
         default:
             return state;

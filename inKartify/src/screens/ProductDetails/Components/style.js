@@ -1,0 +1,104 @@
+import React from "react";
+import { StyleSheet } from "react-native";
+import color from "../../../components/common/colors";
+
+const style = (height, width, portrait)=> StyleSheet.create({
+    moreInfoContainer:{
+        flexDirection:'row',
+        justifyContent:'space-between'
+    },
+    moreInfoDropDownButton:{
+        justifyContent:'center',
+        flexDirection:'row',
+        alignItems:'center', 
+        backgroundColor:color.ligtGrey, 
+        padding:13, 
+        marginBottom:10, 
+        width:150
+    },
+    buttonText:{
+        fontSize:15
+    },
+    collabsibleTitleView:{
+        flexDirection:'row',
+        justifyContent:'space-between',
+        marginVertical:10
+    },
+    titleText:{
+        fontSize:15,
+        fontWeight:'600'
+    },
+    collabsibleContentStyle:{
+        marginVertical:5
+    },
+    seeAll:{
+        color:color.primaryGreen
+    },
+    reviewContainer:{
+        flexDirection:'row',
+        justifyContent:'space-between',
+        marginTop:20
+    },
+    seeAllView:{
+        flexDirection:'row',
+        alignItems:'center'
+    },
+    reviewInnerContainer:{
+        backgroundColor:color.EmeraldGreen,
+        marginTop:3,
+        padding:10,
+        borderRadius:10
+    },
+    reviewerProfileContainer:{
+        flexDirection:'row',
+        alignItems:'center',
+        marginTop:5
+    },
+    profileImage:{
+        height:25,
+        width:25
+    },
+    profileView:{
+        borderRadius:25/2,
+        backgroundColor:color.lightGreen,
+        overflow:'hidden',
+        padding:1
+    },
+    profileNameView:{
+        marginLeft:5
+    },
+    profileNameText:{
+        fontFamily:'Lato-Regular',
+        fontWeight:'700',
+        fontSize:15
+    },
+    reviewText:{
+        marginTop:10
+    },
+    starNum:{
+        color:color.white,
+        fontSize:12,
+        fontFamily:'Lato-Bold'
+    },
+    starView:{
+    },
+    profileName:{
+        marginLeft:5
+    },
+    CheckDeliveryContainer:{
+        marginTop:15
+    },
+    CheckDeliveryText:{
+        fontSize:15,
+        fontFamily:'Lato-Bold',
+        fontWeight:'800'
+    },
+    commonText:{
+        fontFamily:'Lato-Regular',
+        color:color.grey,
+        marginTop:5
+    }
+
+})
+
+export default style

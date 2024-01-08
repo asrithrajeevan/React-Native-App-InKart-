@@ -7,7 +7,14 @@ const style = (width, height) => StyleSheet.create({
         backgroundColor : color.white_level_3,
         flex:1,
     },
+    shadowEffect:{
+        shadowColor: '#000', // Shadow color (for iOS)
+        shadowOffset: { width: 1, height: 1 }, // Shadow offset (for iOS)
+        shadowOpacity: 0.2, // Shadow opacity (for iOS)
+        shadowRadius: 2, // Shadow radius (for iOS)
+    },
     productView:{
+        elevation: 3, // shade effect for android 
         marginHorizontal:15,
         marginVertical:8,
         borderRadius:20,
@@ -18,7 +25,7 @@ const style = (width, height) => StyleSheet.create({
     imageStyle:{
         height:80,
         width:80,
-        resizeMode:'cover',
+        resizeMode:'contain',
     },
     cartCountView:{
         top:-10,
@@ -45,7 +52,8 @@ const style = (width, height) => StyleSheet.create({
     },
     title:{
         fontFamily:"Lato-Black",
-        fontSize:18
+        fontSize:18,
+        color:color.black
     },
     desc:{
         fontFamily:"Lato-Regular",
@@ -54,8 +62,9 @@ const style = (width, height) => StyleSheet.create({
     bottomView:{
         flexDirection:'row',
         alignItems:'center',
-        justifyContent:'center',
         marginVertical:5,
+        justifyContent:'space-between',
+        width:width*0.25
     },
     price:{
         fontFamily:"Lato-Black",
@@ -75,13 +84,14 @@ const style = (width, height) => StyleSheet.create({
         padding:4,
         borderRadius:15,
         borderColor:color.FernGreen,
-        borderWidth:1
+        borderWidth:1,
     },
     addtoCart:{
         color:color.FernGreen
     },
     flatView:{
-        marginTop:15
+        marginTop:15,
+        paddingBottom:20
     },
     removeView:{
         position:'absolute', // it will stand our desired position

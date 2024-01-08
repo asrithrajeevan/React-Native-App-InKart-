@@ -21,7 +21,6 @@ const CostomeBotton = props => {
             color : type === 'primary' ? color.white : color.black_level_3,
             fontSize : type === 'primary' ? dimensions.portrait? 15: 20:15,
             fontFamily : type == 'primary' ? 'Lato-Bold' : 'Lato-Regular',
-
         }}>{buttonText}</Text>
 
         </TouchableOpacity>

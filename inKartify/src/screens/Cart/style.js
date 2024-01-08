@@ -5,10 +5,11 @@ import color from "../../components/common/colors";
 const style = (height, width) => StyleSheet.create({
     container : {
         backgroundColor:color.white_level_3,
-        flex:1
+        flex:1,
     },
     flatListContainer:{
         margin:15,
+        marginVertical:5,
         backgroundColor:color.white,
         // borderRadius:20,
         // borderColor:color.EmeraldGreen, 
@@ -29,7 +30,8 @@ const style = (height, width) => StyleSheet.create({
         width:85,
         height:85,
         alignSelf:'center',
-        marginVertical:10
+        marginVertical:10,
+        resizeMode:'contain'
     },
     itemContentView :{
         borderLeftWidth:1,
@@ -124,8 +126,9 @@ const style = (height, width) => StyleSheet.create({
         fontSize:15, 
 
     },
-
-
+    offerTicketContainerView:{
+        marginTop:15,
+    },
     offersTicketView:{
         flexDirection:'row'
     },

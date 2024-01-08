@@ -34,7 +34,8 @@ const style = (height, width) => StyleSheet.create({
         width:85,
         height:85,
         alignSelf:'center',
-        marginVertical:10
+        marginVertical:10,
+        resizeMode:'contain'
     },
     itemContentView :{
         borderLeftWidth:1,

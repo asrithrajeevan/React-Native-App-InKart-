@@ -4,12 +4,13 @@ const { StyleSheet } = require("react-native");
 
 const style = (height, width) => StyleSheet.create({
     container:{
-        margin:25,
+        marginVertical:20,
         borderRadius:15,
         backgroundColor:color.primaryGreen,
         padding:10,
         alignItems:'center',
-        justifyContent:'center'
+        justifyContent:'center',
+        margin:15
     },
     BottonTextStyle:{
         color:color.white,

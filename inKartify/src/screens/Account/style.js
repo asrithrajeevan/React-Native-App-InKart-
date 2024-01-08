@@ -115,12 +115,12 @@ const style =(width, height)=> StyleSheet.create({
     },
     galleryText:{
         padding:5,
-        fontFamily:'Latto-Black',
+        fontFamily:'Lato-Black',
         color:color.black
     },
     openCameraText:{
         padding:5,
-        fontFamily:'Latto-Black',
+        fontFamily:'Lato-Black',
         color:color.black    
     }
 

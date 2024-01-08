@@ -5,11 +5,22 @@ import style from "./style";
 import firestore from "@react-native-firebase/firestore";
 import { useDimentionsContext } from "../../context";
 import color from "../../components/common/colors";
-import { useNavigation } from "@react-navigation/native";
+import { useNavigation, useRoute } from "@react-navigation/native";
 import HeaderCommonLeft from "../../components/CommonHeaderLeft";
+import { useSelector } from "react-redux";
 
 const Category = () => {
+    const dimensions = useDimentionsContext();
+    const responsiveStyle = style(dimensions.windowHeight, dimensions.windowWidth, dimensions.portrait);
+    const [categories, setCategories] = useState([]);
+    const [products, setProducts] = useState([]);
+    const [CategoryIndex, setEachtCategoriesIndex] = useState(0);
     const navigation=useNavigation()
+    const route = useRoute()
+    const { itemIndex = 0 } = route?.params?? {}  // for firstly the itemIndex is going to undefined. So we can use this way
+    useEffect(() => {
+        setEachtCategoriesIndex(itemIndex)
+    }, [itemIndex])
     useEffect(() => {
         navigation.setOptions({
             headerLeft:()=> <HeaderCommonLeft />,
@@ -19,15 +30,13 @@ const Category = () => {
         )
         
     }, [])
-    const dimensions = useDimentionsContext();
-    const responsiveStyle = style(dimensions.windowHeight, dimensions.windowWidth, dimensions.portrait);
-    const [categories, setCategories] = useState([]);
-    const [products, setProducts] = useState([]);
-    const [CategoryIndex, setEachtCategoriesIndex] = useState(0);
+    
+    // console.warn(CategoryIndex);
     useEffect(() => {
         getCategories()
         getProducts()
     }, [])
+
 
     const getCategories = async () => {
        await firestore().collection('Categories').get().then((snapshot)=>{
@@ -44,42 +53,53 @@ const Category = () => {
             }
         }).catch(err =>console.log(err))
     }
+    const {updateCategories} = useSelector(state=>state)  // we can easly access the category items after storing it to redux in home page. API calling of each pages are not necessary like above, we can access whole page using useSelector once it stored it using redux.
+
+
     // for getting product collection from firbase
     const getProducts = async () => {
         await firestore().collection('Product').get().then((snapshot)=>{
+
              if(!snapshot.empty){
                  const result = []
-                 snapshot.docs.forEach(item =>{
-                    if(item.exists){
-                    result.push(item.data())
+                 snapshot.docs.forEach(doc =>{
+                    if(doc.exists){
+                        const responseData = {id:doc.id, ...doc?.data()}
+                        result.push(responseData)
                     }
-                 })
-                 setProducts(result)
-             }
+                })
+                setProducts(result)
+                console.warn('item-------->>',result);
+
+            }
          }).catch(err =>console.log(err))
      }
+
 
     const handleCategorytouch = index => {
         // console.log('cate-item',index);
         setEachtCategoriesIndex(index)
 
     }
-
+    const handleNavigate = (item) =>{
+        navigation.navigate('ProductDetails',{product:item})
+        console.warn('item-item->',item);
+    }
     return(
         <View style={responsiveStyle.main}>
-            <ScrollView nestedScrollEnabled showsVerticalScrollIndicator={false} style={responsiveStyle.container}>
+            <View nestedScrollEnabled showsVerticalScrollIndicator={false} style={responsiveStyle.container}>
                 <CostomeSearch />
                 <View style={responsiveStyle.containerRowStyle}>
                     {/* side bar */}
                     <View>
-                        <FlatList 
-                        data={categories}
+                        <FlatList
+                        data={updateCategories}
                         showsVerticalScrollIndicator={false}
                         contentContainerStyle={responsiveStyle.styleFlatList}
                         renderItem={({item,index})=>{
                             return(
                                 // we can pass each item by using '()=> handleCategorytouch(item)'
-                                <TouchableOpacity style={[responsiveStyle.catImageTouch,{backgroundColor : index === CategoryIndex? color.white_level_1 : 'transparent',borderWidth : index === CategoryIndex? 1 : 'transparent' }]} onPress={()=>handleCategorytouch(index)}>
+                                <TouchableOpacity style={[responsiveStyle.catImageTouch,{backgroundColor : index === CategoryIndex? color.white : 'transparent',borderWidth : index === CategoryIndex? 1 : 'transparent' }]} onPress={()=>handleCategorytouch(index)}>
                                     <Image source={{uri:item.image}} style={responsiveStyle.catImage}/>
                                 </TouchableOpacity>
                             )
@@ -88,7 +108,7 @@ const Category = () => {
                     </View>
                     {/* content */}
                     <View>
-                        <ScrollView style={responsiveStyle.rightScrollView}>
+                        <View style={responsiveStyle.rightScrollView}>
                             <ImageBackground source={require('../../assets/images/homebanner1.jpeg')} style={responsiveStyle.ImageBackground}>
                                 <View style={responsiveStyle.bgImageTextView}>
                                     <Text numberOfLines={1} style={{fontFamily:'Lato-Bold', fontSize:20}}>
@@ -107,7 +127,7 @@ const Category = () => {
                                 keyExtractor={(itemId, index)=>String(index)}
                                 renderItem={({item,index})=>{
                                     return(
-                                        <TouchableOpacity style={responsiveStyle.productImageContainer}>
+                                        <TouchableOpacity onPress={()=>handleNavigate(item)} style={responsiveStyle.productImageContainer}>
                                             <View style={responsiveStyle.ImageBg}>
                                                 <Image source={{uri:item.image}} style={responsiveStyle.productImage}/>
                                             </View>
@@ -117,10 +137,10 @@ const Category = () => {
                                     )
                                 }}
                             />
-                        </ScrollView>
+                        </View>
                     </View>
                 </View>
-            </ScrollView>
+            </View>
         </View>
     )
 }

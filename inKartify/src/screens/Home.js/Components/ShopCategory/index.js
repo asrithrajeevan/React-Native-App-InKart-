@@ -1,18 +1,20 @@
-import React, { useEffect, useState } from 'react';
-import { Image, Text, View, } from 'react-native';
-import style from './style';
 import { useDimentionsContext } from '../../../../context';
-import { FlatList } from 'react-native-gesture-handler';
 import color from '../../../../components/common/colors';
+import { updateCategories } from '../../../../storage/action';
+import style from './style';
+import React, { useEffect, useState } from 'react';
+import { Image, Text, TouchableOpacity, View, } from 'react-native';
+import { FlatList } from 'react-native-gesture-handler';
 import firestore  from "@react-native-firebase/firestore"; 
 import { useDispatch } from 'react-redux';
-import { updateCategories } from '../../../../storage/action';
+import { useNavigation } from '@react-navigation/native';
 
 const ShopCategory = () => {
     const dimensions = useDimentionsContext();
     const dispatch = useDispatch()
     const responsiveStyle = style(dimensions.windowHeight, dimensions.windowWidth);
     const [categories, setCategories] = useState([]);
+    const navigation = useNavigation()
     useEffect(() => {
         getCategories()
     },[])
@@ -24,7 +26,10 @@ const ShopCategory = () => {
                 // console.log(snapshot.docs)
                 snapshot.docs.forEach(item =>{
                     if(item.exists){
-                        result.push(item.data())
+                        const responseData = {id:item.id, ...item?.data()} // by writing like this we could get whole data with its firbase id
+                        console.warn('responseData===}',responseData);
+                        // result.push(item.data())
+                        result.push(responseData)
                     }
                 })
                 setCategories(result)
@@ -45,6 +50,11 @@ const ShopCategory = () => {
 
     // ]
 
+    // navigate with index as a parameter to the Categary pages
+    const handleNavigate = (index) =>{
+        navigation.navigate('Category',{itemIndex:index})
+    }
+
     return(
         <View style={responsiveStyle.container}>
             <Text style={responsiveStyle.head}>Shop By Category</Text>
@@ -57,12 +67,12 @@ const ShopCategory = () => {
                 renderItem={({item, index})=>{
                     const categorieColor = index % 4 === 0 ? color.category1 : index % 4 === 1 ? color.category2 : index % 4 === 2 ? color.category3 : color.category4
                 return(
-                    <View style={responsiveStyle.innerView}>
+                    <TouchableOpacity onPress={()=>handleNavigate(index)} style={responsiveStyle.innerView}>
                         <View style={[responsiveStyle.imageView,{backgroundColor:categorieColor}]}>
                             <Image source={{uri : item.image}} style={responsiveStyle.image}/>
                         </View>
                         <Text style={responsiveStyle.itemName}>{item.name}</Text>
-                    </View>
+                    </TouchableOpacity>
                 )
             }}/>
         </View>

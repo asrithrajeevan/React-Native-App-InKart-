@@ -1,5 +1,5 @@
 import React from "react";
-import { Text, View } from "react-native";
+import { Image, Text, TouchableOpacity, View } from "react-native";
 import { useDimentionsContext } from "../../context";
 import style from './style';
 import { useNavigation } from "@react-navigation/native";
@@ -15,7 +15,10 @@ const CommonSectionHeader = props =>{
                 <Text style={responsiveStyle.headText}>{props.head}</Text>
                 <Text style={responsiveStyle.contentText}>{props.content}</Text>
             </View>
-            <Text style={responsiveStyle.seeAll} onPress={()=>navigation.navigate("Shop")}>See All</Text>
+            <TouchableOpacity onPress={()=>navigation.navigate("Shop",{type:'all'})} style={{flexDirection:'row',alignItems:'center', justifyContent:'center'}}>
+                <Text style={responsiveStyle.seeAll}>See All</Text>
+                <Image source={require('../../assets/images/right-arrow.png')} style={{width:12, height:12, marginLeft:5}}/>
+            </TouchableOpacity>
         </View>
     )
 }

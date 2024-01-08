@@ -6,7 +6,7 @@ import { useDimentionsContext } from "../../context";
 import { TextInput } from "react-native-gesture-handler";
 
 const CostomeSearch = props => {
-    const {filter} = {...props} // the filter willbe true when the order screen render.
+    const {filter, placeholder, mike=true} = {...props} // the filter willbe true when the order screen render.
     const dimensions = useDimentionsContext();
     const responsiveStyle = style(dimensions.windowHeight, dimensions.windowWidth);
 
@@ -15,9 +15,9 @@ const CostomeSearch = props => {
             <View style={filter? [responsiveStyle.newSearch] :[responsiveStyle.search]}>
                 <View style={responsiveStyle.innerSearch}>
                     <Image source={require('../../assets/images/searchbar.png')} style={responsiveStyle.searchIcon} />
-                    <TextInput placeholder="Search Here" selectionColor={color.EmeraldGreen} placeholderTextColor={color.black_level_3} style={responsiveStyle.textInput}/>
+                    <TextInput placeholder={placeholder? placeholder: "Search Here"} selectionColor={color.EmeraldGreen} placeholderTextColor={color.black_level_3} style={responsiveStyle.textInput}/>
                 </View>
-                <Image source={require('../../assets/images/mic.png')}  style={responsiveStyle.micIcon} />
+                {mike? <Image source={require('../../assets/images/mic.png')}  style={responsiveStyle.micIcon} /> : null}
             </View>
             <TouchableOpacity><Text style={responsiveStyle.filterText}>{filter? 'Filter':null}</Text></TouchableOpacity>
         </View>

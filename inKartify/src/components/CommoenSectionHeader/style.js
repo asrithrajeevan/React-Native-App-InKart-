@@ -10,7 +10,7 @@ const style = (height, width) => StyleSheet.create({
         // marginLeft:15,
         // marginRight:15,
         // marginTop : 15,
-        margin:15,
+        // margin:10,
         flexDirection:'row',
         alignItems:'center',
         justifyContent:'space-between'

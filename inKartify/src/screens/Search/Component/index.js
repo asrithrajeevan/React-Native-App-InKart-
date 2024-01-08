@@ -6,9 +6,10 @@ import firestore  from '@react-native-firebase/firestore';
 import color from '../../../components/common/colors';
 import { useNavigation } from '@react-navigation/native';
 import HeaderCommonLeft from '../../../components/CommonHeaderLeft';
+import { useSelector } from 'react-redux';
 
 const TrendingItem = () => {
-    const [getItem, setItem] = useState([])
+    // const [getItem, setItem] = useState([])
     const dimensions = useDimentionsContext();
     const responsiveStyle = style(dimensions.windowHeight, dimensions.windowWidth);
     const navigation = useNavigation()
@@ -19,30 +20,31 @@ const TrendingItem = () => {
         })
     })
 
-    useEffect(()=>{
-        recentItem()
-    },[])
+    // useEffect(()=>{
+    //     recentItem()
+    // },[])
 
-    const recentItem = async() =>{
-        await firestore().collection('Categories').get().then((snapshot)=>{
-            if(!snapshot.empty){
-                const result = []
-                snapshot.docs.forEach(item =>{
-                    if(item.exists){
-                        result.push(item.data())
-                    }
-                })
-                setItem(result)
-                console.log('Categories---->',categories);
-            }
-        }).catch(err =>console.log(err))
-    } 
+    // const recentItem = async() =>{
+    //     await firestore().collection('Categories').get().then((snapshot)=>{
+    //         if(!snapshot.empty){
+    //             const result = []
+    //             snapshot.docs.forEach(item =>{
+    //                 if(item.exists){
+    //                     result.push(item.data())
+    //                 }
+    //             })
+    //             setItem(result)
+    //             console.log('Categories---->',categories);
+    //         }
+    //     }).catch(err =>console.log(err))
+    // } 
+    const {updateCategories} = useSelector(state => state);
 
     return(
         <View style={responsiveStyle.container}>
             <Text style={responsiveStyle.head}>Trending items</Text>
             <FlatList 
-            data={getItem} 
+            data={updateCategories} 
             horizontal
             keyExtractor={(itemId, index)=>String(index)}
             showsHorizontalScrollIndicator={false} 

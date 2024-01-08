@@ -9,7 +9,7 @@ const CommonBotton = props =>{
     const responsiveStyle = style(dimensions.windowHeight, dimensions.windowWidth)
 
     return(
-        <TouchableOpacity style={responsiveStyle.container}>
+        <TouchableOpacity onPress={props.onButtonPress} style={responsiveStyle.container}>
             <Text style={responsiveStyle.BottonTextStyle}>{props.name}</Text>
         </TouchableOpacity>
     )

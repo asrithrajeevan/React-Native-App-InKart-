@@ -8,6 +8,7 @@ const color = {
     black_level_2 : '#131920',
     black_level_3 : '#1e2833',
     grey : '#828282',
+    ligtGrey:'#e0e0e0',
     iron : '#48494b',
     shadow : '#363636',
     steel : '#777b7e',

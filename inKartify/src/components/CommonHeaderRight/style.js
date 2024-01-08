@@ -3,6 +3,10 @@ import { StyleSheet } from "react-native";
 import color from "../common/colors";
 
 const style = (width, height) => StyleSheet.create({
+    rightIconsContainer:{
+        flexDirection:'row',
+        justifyContent:'space-around'
+    },
     touchContainer : {
         marginRight:15
     },
@@ -27,6 +31,7 @@ const style = (width, height) => StyleSheet.create({
         fontFamily:'Lato-Bold',
         color:color.white,
     },
+    
 })
 
 export default style

@@ -15,10 +15,11 @@ const style = (height, width, portrait) => StyleSheet.create({
     },
     styleFlatList : {
         // marginLeft:15,
-        backgroundColor:color.lightGreen,
+        backgroundColor:color.LightGreen,
         justifyContent:'center',
         alignItems:'center',
         marginRight:10,
+        borderRadius:10
     },
     catImage:{
         width: portrait? width*0.23 : width*0.2, 
@@ -46,6 +47,7 @@ const style = (height, width, portrait) => StyleSheet.create({
         justifyContent:'center',
         alignSelf:'center',
         overflow:'hidden',
+        marginBottom:5
     },
     bgImageTextView:{
         margin:10
@@ -53,8 +55,8 @@ const style = (height, width, portrait) => StyleSheet.create({
     productImage:{
         width:width*0.19,
         height:width*0.19,
-        margin:5
-        // resizeMode:'contain',
+        margin:5,
+        resizeMode:'contain',
         // backgroundColor:color.EmeraldGreen
     },
     productImageContainer:{
@@ -63,13 +65,14 @@ const style = (height, width, portrait) => StyleSheet.create({
     },
     productFlatStyle:{
         justifyContent:'center',
-        paddingTop:10,
+        paddingTop:5,
     },
     ImageBg:{
         backgroundColor:color.category4,
         margin:3,
         justifyContent:'center',
-        borderRadius:10
+        borderRadius:10,
+        overflow:'hidden'
     },
     imageName:{
         fontFamily:'Lato-Bold',
