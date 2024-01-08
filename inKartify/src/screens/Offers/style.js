@@ -1,0 +1,112 @@
+import React from "react";
+import { StyleSheet } from "react-native";
+import color from "../../components/common/colors";
+
+const style = (height, width, portrait) => StyleSheet.create({
+    main : {
+        flex:1
+    },
+    container: {
+        backgroundColor:color.white_level_3,
+    },
+    offerTicketContainerView:{
+        marginTop:15,
+    },
+    offersTicketView:{
+        flexDirection:'row'
+    },
+    ticketRoundLeftView:{
+        marginRight:-10,
+        zIndex:99
+    },
+    ticketRoundStyles:{
+        width:25,
+        height:25,
+        borderRadius:25/2, 
+        backgroundColor:color.white_level_3
+    },
+    ticketContainer:{
+        width:'60%', 
+        height:100, 
+        backgroundColor:color.lightGreen
+    },
+    ticketContentView:{
+        flexDirection:'row',
+        alignItems:'center',
+        justifyContent:'center',
+        marginVertical:25
+    },
+    ticketOfferText:{
+        fontSize:40,
+        fontWeight:'900',
+        fontFamily:'Lato-Bold',
+        color:color.EmeraldGreen
+    },
+    percentage:{
+        fontFamily:'Lato-Bold',
+        color:color.EmeraldGreen
+    },
+    offText:{
+        fontFamily:'Lato-Bold',
+        color:color.EmeraldGreen,
+        fontSize:10
+    },
+    headText:{
+        fontFamily:'Lato-Bold',
+        fontSize:14
+    },
+    contentText:{
+        fontSize:10
+    },
+    ticketMiddleRoundView:{
+        height:100, 
+        backgroundColor:color.lightGreen
+    },
+    ticketMiddleUpperRound:{
+        width:25, 
+        height:25, 
+        borderRadius:25/2, 
+        backgroundColor:color.white_level_3,
+        marginTop:-10
+    },
+    ticketMiddleBottomRound:{
+        width:25, 
+        height:25, 
+        borderRadius:25/2, 
+        backgroundColor:color.white_level_3,
+        marginTop:70
+    },
+    ticketRightContainer:{
+        width:'28%',
+        flexDirection:'column',
+        backgroundColor:color.lightGreen,
+        justifyContent:'space-between'
+    },
+    ticketRightContent:{
+        alignItems:'center',
+        justifyContent:'center', 
+        marginVertical:20, 
+        marginLeft:-20
+    },
+    useCodeText:{
+        fontFamily:'Lato-Regular',
+        padding:5,
+        fontSize:12, 
+        fontWeight:'900'
+    },
+    codeView:{
+        backgroundColor:color.Green,
+        padding:5,
+        borderRadius:15
+    },
+    itemCode:{
+        color:color.white, 
+        fontFamily:'Lato-Bold', 
+        fontWeight:'500'
+    },
+    responsiveStyle:{
+        marginLeft:-15
+    }
+})
+
+export default style
