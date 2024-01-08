@@ -8,8 +8,12 @@ import auth from "@react-native-firebase/auth";
 import color from "../../components/common/colors";
 import Snackbar from "react-native-snackbar";
 import validatePhoneNumber, { hasSpecialCharacter } from "./controller";
+import { useDimentionsContext } from "../../context";
 
 const LogInWithPhone = () => {
+    const dimentions = useDimentionsContext();
+    const responsiveStyle = styles(dimentions.windowHeight, dimentions.windowWidth, dimentions.portrait)
+
     const navigation = useNavigation()
     const [userPhone, handlePhone] = useState('')     // for storing mobilenumber.
     const [error, errorSet] = useState('')            // for setting error messages if the entered mobile number is not register.
@@ -78,19 +82,19 @@ const LogInWithPhone = () => {
 
 
     return(
-        <View style={styles.container}>
+        <View style={responsiveStyle.container}>
             <Image
                 source={require('../../assets/images/login_bg.webp')}
-                style={styles.logBg}
+                style={responsiveStyle.logBg}
             />
 
-            <ScrollView style={styles.ScrollView} showsVerticalScrollIndicator={false}>
+            <ScrollView style={responsiveStyle.ScrollView} showsVerticalScrollIndicator={false}>
                 <Image
                     source={require('../../assets/images/InKart.png')}
-                    style={styles.inkart}
+                    style={responsiveStyle.inkart}
                 />
 
-                <Text style={styles.loginText}>LogIn With Phone</Text>
+                <Text style={responsiveStyle.loginText}>LogIn With Phone</Text>
 
                 <CustomeTextInput
                     type = 'mobile'
@@ -117,7 +121,7 @@ const LogInWithPhone = () => {
                     buttonText={OtpField? 'Verify OTP' : 'Sign Up'}
                 />
                 <TouchableOpacity onPress={handleGoBack}>
-                    <Text style={styles.GoToLogin}>Go To Login</Text>
+                    <Text style={responsiveStyle.GoToLogin}>Go To Login</Text>
                 </TouchableOpacity>
                 
             </ScrollView>

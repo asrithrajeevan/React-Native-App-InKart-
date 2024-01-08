@@ -9,9 +9,15 @@ import Snackbar from "react-native-snackbar";
 import color from "../../components/common/colors";
 import { GoogleSignin } from "@react-native-google-signin/google-signin";
 import validatePhoneNumber, { hasSpecialCharacter } from "./controller";
+import { EmailValidation } from "../../components/common/validations";
+import { useDimentionsContext } from "../../context";
 
 
 const SignUp = () => {
+    const dimensions = useDimentionsContext()
+    // console.log('login ==>> height :',dimensions.getHeight, 'width : ',dimensions.getWidth);
+    const responsiveStyle = styles(dimensions.windowHeight, dimensions.windowWidth, dimensions.portrait)  // passing the width and height to styles page
+
     const [getUsername, setUsername] = useState('')
     const [getEmail, setEmail] = useState('')
     const [getMobile, setMobile] = useState('')
@@ -43,7 +49,7 @@ const SignUp = () => {
             && getMobile.trim() !== ''
             && getPassword.trim() !== ''
             && getCpassword.trim() !== '' ){
-                if(hasSpecialCharacter(getEmail)){
+                if(EmailValidation(getEmail)){
                     if(validatePhoneNumber(getMobile)){
                         if(getPassword.trim() === getCpassword.trim()){
                             //checking if any other account is existing or not using username and email
@@ -100,23 +106,23 @@ const SignUp = () => {
 
 
     return(
-        <View style={styles.container}>
+        <View style={responsiveStyle.container}>
             <Image
                 source={require('../../assets/images/login_bg.webp')}
-                style={styles.logBg}
+                style={responsiveStyle.logBg}
             />
 
-            <ScrollView style={styles.ScrollView} showsVerticalScrollIndicator={false}>
+            <ScrollView style={responsiveStyle.ScrollView} showsVerticalScrollIndicator={false}>
                 <Image
                     source={require('../../assets/images/InKart.png')}
-                    style={styles.inkart}
+                    style={responsiveStyle.inkart}
                 />
 
-                <Text style={styles.loginText}>Sign Up Account</Text>
+                <Text style={responsiveStyle.loginText}>Sign Up Account</Text>
 
                 { validation ? 
-                    <View style={styles.validationContainer}>
-                        <Text style={styles.validationText}>{validation}</Text>
+                    <View style={responsiveStyle.validationContainer}>
+                        <Text style={responsiveStyle.validationText}>{validation}</Text>
                     </View>
                     
                  : null }
@@ -156,7 +162,7 @@ const SignUp = () => {
                     buttonText={'Sign Up'}
                 />
                     
-                <Text style={styles.OrSignUpWith}>Or Signup With</Text>
+                <Text style={responsiveStyle.OrSignUpWith}>Or Signup With</Text>
 
                 <CostomeBotton
                     type = 'third'
@@ -166,7 +172,7 @@ const SignUp = () => {
                 />
 
                 <TouchableOpacity onPress={handleGoBack}>
-                    <Text style={styles.GoToLogin}>Go To Login</Text>
+                    <Text style={responsiveStyle.GoToLogin}>Go To Login</Text>
                 </TouchableOpacity>
                 
             </ScrollView>

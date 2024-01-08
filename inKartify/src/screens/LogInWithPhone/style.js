@@ -1,28 +1,28 @@
 import { Dimensions, StyleSheet } from "react-native";
 import colors from "../../components/common/colors"
-const {width, height} = Dimensions.get('screen')
 
-const styles = StyleSheet.create({
+const styles = (height, width, portrait) => StyleSheet.create({
     container:{
         height:'100%'
     },
     logBg : {
         width : width,
-        height : height*0.14,
+        height : width*0.3,
         resizeMode : 'cover', // for standing pictur fill and fit.
     },
     ScrollView : {
         flex:1,
         backgroundColor : colors.white,
-        marginTop : -width*0.10,
+        marginTop : portrait? -width*0.10 : -width*0.22,
         borderTopLeftRadius : width*0.051,
         borderTopRightRadius : width*0.051,
         overflow : 'hidden',
-        padding : width*0.038,
+        padding :portrait? width*0.038 : width*0.038,
     },
     inkart : {
-        width : width*0.51,
-        height : height*0.099,
+        width : portrait? width*0.41: width*0.35,
+        marginLeft:-15,
+        height :width*0.099,
         resizeMode : 'contain', // 'contain' stands for the picture must contain with the given height and weight
     },
     loginText : {

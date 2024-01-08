@@ -1,12 +1,10 @@
-import { Dimensions, StyleSheet } from "react-native";
+import { Platform, StyleSheet } from "react-native";
 import color from "../common/colors";
-const {width, height} = Dimensions.get('screen')
 
-
-const styles = StyleSheet.create({
+const styles = (height, width, portrait) => StyleSheet.create({
     textInput : {
         color : color.black_level_3,
-        fontSize : 15,
+        fontSize : 16,
         fontFamily : 'Lato-Regular',
         width : '90%',
     },
@@ -15,7 +13,7 @@ const styles = StyleSheet.create({
         alignItems :'center',
         justifyContent :'space-between',
         backgroundColor : color.lightGreen,
-        padding : width * 0.0441, //width * 0.01, 
+        padding : Platform.OS=='ios'? portrait? width * 0.0341 : width * 0.021 : width * 0.01, 
         borderRadius : 10,
         marginVertical : 10,
         borderColor : 'grey',

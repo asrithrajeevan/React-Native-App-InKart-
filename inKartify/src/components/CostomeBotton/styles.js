@@ -1,19 +1,18 @@
 import { Dimensions, StyleSheet } from "react-native";
 import color from "../common/colors";
-const {width, height} = Dimensions.get('screen')
 
-const styles = StyleSheet.create({
+const styles = (height,width,portrait) => StyleSheet.create({
     Button : { 
         flexDirection : 'row',
         alignItems :'center',
         justifyContent :'center',
-        padding : width * 0.0441,
+        padding : portrait? width * 0.0441 : width * 0.02441,
         borderRadius : 8,
         marginVertical : 10,
     },
     Logo : {
-        width : width*0.07,
-        height : width*0.07,
+        width : portrait? width*0.06 : width*0.03,
+        height : portrait? width*0.06 : width*0.03,
         marginRight : width*0.01,
     }
 })

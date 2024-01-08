@@ -4,8 +4,11 @@ import styles from "./style";
 import CustomeTextInput from "../../components/CustomeTextInput";
 import CostomeBotton from "../../components/CostomeBotton";
 import { useNavigation } from "@react-navigation/native";
+import { useDimentionsContext } from "../../context";
 
 const LogInWithGoogle = () => {
+    const dimentions = useDimentionsContext();
+    const responsiveStyle = styles(dimentions.windowHeight, dimentions.windowWidth, dimentions.portrait)
     const [userEmail, handleEmail] = useState('')
     const navigation = useNavigation()
 
@@ -15,19 +18,19 @@ const LogInWithGoogle = () => {
 
 
     return(
-        <View style={styles.container}>
+        <View style={responsiveStyle.container}>
             <Image
                 source={require('../../assets/images/login_bg.webp')}
-                style={styles.logBg}
+                style={responsiveStyle.logBg}
             />
 
-            <ScrollView style={styles.ScrollView} showsVerticalScrollIndicator={false}>
+            <ScrollView style={responsiveStyle.ScrollView} showsVerticalScrollIndicator={false}>
                 <Image
                     source={require('../../assets/images/InKart.png')}
-                    style={styles.inkart}
+                    style={responsiveStyle.inkart}
                 />
 
-                <Text style={styles.loginText}>LogIn With Google</Text>
+                <Text style={responsiveStyle.loginText}>LogIn With Google</Text>
 
                 <CustomeTextInput
                     type = 'email' 
@@ -40,7 +43,7 @@ const LogInWithGoogle = () => {
                     buttonText={'Sign Up'}
                 />
                 <TouchableOpacity onPress={handleGoBack}>
-                    <Text style={styles.GoToLogin}>Go To Login</Text>
+                    <Text style={responsiveStyle.GoToLogin}>Go To Login</Text>
                 </TouchableOpacity>
                 
             </ScrollView>

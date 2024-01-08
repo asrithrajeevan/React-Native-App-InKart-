@@ -4,17 +4,32 @@ const color = {
     white_level_2 : '#f4f4f4',
     white_level_3 : '#eaeaeb',
     black : '#000',
-    black_level_1 : '#0d116',
+    black_level_1 : '#000',
     black_level_2 : '#131920',
     black_level_3 : '#1e2833',
     grey : '#828282',
     iron : '#48494b',
     shadow : '#363636',
     steel : '#777b7e',
-    primaryGreen : '#2e8b57',
+    primaryGreen : '#2e8b35',
     lightGreen : '#E0FFD2',
     secondaryGreen : '#1e7531',
-    red : '#FF0000'
+    red : '#FF0000',
+    EmeraldGreen : '#50C878',
+    FernGreen : '#4F7942',
+    ForestGreen : '#228B22',
+    GrassGreen :'#7CFC00',
+    Green : '#008000',
+    KellyGreen : '#4CBB17',
+    LightGreen : '#90EE90',
+    LimeGreen : '#32CD32',
+    category1 : '#FFD495',
+    category2 : '#C3ACD0',
+    category3 : '#98EECC',
+    category4 : '#E893CF',
+    category5 : '#FEFF86',
 }
 
 export default color
+
+// https://htmlcolorcodes.com/colors/shades-of-green/

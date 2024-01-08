@@ -10,15 +10,18 @@ import firestore  from "@react-native-firebase/firestore"; // make it sure impor
 import auth from '@react-native-firebase/auth';
 import { isValidEmail } from "./controller";
 import { useDimentionsContext } from "../../context";
+import { useDispatch } from "react-redux";
+import { login } from "../../storage/action";
 
 const Login = () => {
     const dimensions = useDimentionsContext()
     // console.log('login ==>> height :',dimensions.getHeight, 'width : ',dimensions.getWidth);
-    const responsiveStyle = styles(dimensions.windowHeight, dimensions.windowWidth)  // passing the width and height to styles page
+    const responsiveStyle = styles(dimensions.windowHeight, dimensions.windowWidth, dimensions.portrait)  // passing the width and height to styles page
 
     const [userEmail, handleEmail] = useState('')
     const [password, handlePassword] = useState('')
     const navigation = useNavigation()
+    const dispatch = useDispatch()  // for redux activity.
 
     // The below code looks, does the user register previously..?
     function onAuthStateChanged(user) {
@@ -55,15 +58,26 @@ const Login = () => {
                         });
                     }else{
                         // Acessing datas from firestore
-                        snapshot.forEach(documentSnapshot =>{
+                        snapshot.forEach(documentSnapshot => {
                             const resData = documentSnapshot.data()
+                            console.warn('documentSnapshot',documentSnapshot.id);
+                            // console.warn(resData);
                             if(password.trim() === resData.password && userEmail.trim() === resData.email){
                                 Snackbar.show({
                                     text: 'Loging successfull',
                                     backgroundColor : color.primaryGreen,
                                     duration: Snackbar.LENGTH_LONG,
                                 });
-                                navigation.navigate('Home')
+                                dispatch(
+                                    login({
+                                        userId : documentSnapshot.id, // for getting the id of user collection in firstor
+                                        firstName:resData.firstName, 
+                                        lastName:resData.lastName, 
+                                        mobilenumber:resData.mobilenumber, 
+                                        email:resData.email, 
+                                        profileImage:resData.profileImage
+                                    }))
+                                navigation.navigate('AppDrawer')
                             }else{
                                 Snackbar.show({
                                     text: 'Incorrect email or password plese try again',
@@ -159,7 +173,6 @@ const Login = () => {
                     Login as a gust
                 </Text>
             </View>
-
         </View>
     )
 }
