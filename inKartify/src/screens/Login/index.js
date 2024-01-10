@@ -60,7 +60,7 @@ const Login = () => {
                         // Acessing datas from firestore
                         snapshot.forEach(documentSnapshot => {
                             const resData = documentSnapshot.data()
-                            console.warn('documentSnapshot',documentSnapshot.id);
+                            // console.warn('documentSnapshot',documentSnapshot.id);
                             // console.warn(resData);
                             if(password.trim() === resData.password && userEmail.trim() === resData.email){
                                 Snackbar.show({

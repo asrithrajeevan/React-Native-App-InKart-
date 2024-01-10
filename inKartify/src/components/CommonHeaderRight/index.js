@@ -8,7 +8,7 @@ import color from "../common/colors";
 import { useSelector } from "react-redux";
 
 const HeaderCommonRight = props => {
-    const {cartCount} = useSelector(state => state)
+    const cartCount = useSelector(state => state.cartCount)
     const { plus, handlePressIcon} = props
     const navigation = useNavigation()
     const dimensions = useDimentionsContext();

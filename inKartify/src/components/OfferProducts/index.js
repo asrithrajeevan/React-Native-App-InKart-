@@ -109,8 +109,9 @@ const RenderItem = ({item, index})=>{
     const navigation = useNavigation()
     const [qun, setQun] = useState(0)
     const dispatch = useDispatch()
-    const {userId, cartCount} = useSelector(state => state); // user id is important to store in cart.
-    console.warn(qun);
+    const userId = useSelector(state => state.userId); // user id is important to store in cart.
+    const cartCount = useSelector(state => state.cartCount); // user id is important to store in cart.
+    // console.warn(qun);
     const handleNavigate = () =>{
         navigation.navigate('ProductDetails',{product:item})
     }

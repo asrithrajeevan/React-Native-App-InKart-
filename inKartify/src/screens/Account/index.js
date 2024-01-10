@@ -32,7 +32,13 @@ import { updateProfile } from "../../storage/action";
 import { updateProfileImage } from "./controller";
 
 const Account = () => {
-    const {firstName, lastName, email, mobilenumber, profileImage, userId} = useSelector(state => state); // we can aceess the global state like this 
+    const firstName= useSelector(state => state.firstName); // we can aceess the global state like this 
+    const lastName = useSelector(state => state.lastName); // we can aceess the global state like this 
+    const email = useSelector(state => state.email); // we can aceess the global state like this 
+    const mobilenumber = useSelector(state => state.mobilenumber); // we can aceess the global state like this 
+    const profileImage = useSelector(state => state.profileImage); // we can aceess the global state like this 
+    const userId = useSelector(state => state.userId); // we can aceess the global state like this 
+
     const [userProfileImage, setProfileImage] = useState(profileImage)
     const [FirstName, handleFirstNametext] = useState(firstName)
     const [LastName, handleLastNametext] = useState(lastName)

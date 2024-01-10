@@ -4,26 +4,27 @@ import CostomeSearch from "../../components/CostomeSearchBox";
 import color from "../../components/common/colors";
 import { useDimentionsContext } from "../../context";
 import style from "./style";
-import { useNavigation } from "@react-navigation/native";
+import { useIsFocused, useNavigation } from "@react-navigation/native";
 import HeaderCommonLeft from "../../components/CommonHeaderLeft";
 import firestore  from "@react-native-firebase/firestore";
 import { useSelector } from "react-redux";
 
 const Orders = () => {
     const dimensions = useDimentionsContext();
-    const navigation=useNavigation()
-    const {userId} = useSelector(state => state); 
-    const [orderItems, setOrderItems] = useState()
+    const navigation=useNavigation();
+    const userId = useSelector(state => state.userId); 
+    const [orderItems, setOrderItems] = useState();
+    const IsFocused = useIsFocused()
     useEffect(() => {
         getOrderItem()
         navigation.setOptions({
-            headerLeft:()=> <HeaderCommonLeft />,
+            headerLeft:()=> <HeaderCommonLeft/>,
             headerTitleAlign:'left',
             headerTitleStyle:{fontFamily:'Lato-Bold',fontSize:20}
             }
         )
         
-    }, [])
+    }, [IsFocused])
     const responsiveStyle = style(dimensions.windowHeight, dimensions.windowWidth, dimensions.portrait);
     // const order_items = [
     //     {
@@ -90,19 +91,54 @@ const Orders = () => {
         })
     }
 
+    const handleSearch = async text => {
+        await firestore()
+            .collection('Orders')
+            .where('userId','==',userId)
+            .orderBy('orderId')  
+            .startAt(String(text))              // Search only possible in string So convert it to string.
+            .endAt(String(text) + '\uf8ff')    // '\uf8ff' is for to possible the in between search and change the text to string because we concatenate the string
+            .get()
+            .then(snapshot=>{
+                // console.warn(snapshot);
+            if(snapshot.empty){
+                setOrderItems([])
+            }else{
+                const result = []
+                snapshot?.docs.forEach(document=>{
+                    if(document.exists){
+                        const responseData = {id : document.id, ...document?.data()}
+                        result.push(responseData)
+                    }
+                })
+                setOrderItems(result)
+            }
+        })
+    }
+    
+    const handleNavigate = item => {
+        navigation.navigate('OrderDetails', {item : item})
+    }
     return(
         <View style={responsiveStyle.container}>
-            <CostomeSearch filter={true} placeholder={'Search using order id'} mike={false}/>
+            <CostomeSearch 
+                filter={true} 
+                placeholder={'Search using order id'} 
+                mike={false} 
+                onChangeText={text=>handleSearch(text)}
+            />
             <FlatList 
                 data={orderItems} 
                 keyExtractor={(itemId, index)=>String(index)}
-                showsVerticalScrollIndicator={false} renderItem={({item,index})=>{
+                showsVerticalScrollIndicator={false} 
+                contentContainerStyle={responsiveStyle.FlatListStyle}
+                renderItem={({item,index})=>{
                     // console.warn('item-->',item.cartItem.price);
                     return(
-                        <TouchableOpacity style={responsiveStyle.flatView}>
+                        <TouchableOpacity onPress={()=>handleNavigate(item)} style={responsiveStyle.flatView}>
                             <View style={responsiveStyle.innerView}>
                                 <View style={responsiveStyle.orderContainer}>
-                                    <Text style={responsiveStyle.orderId}>{item.orderId}</Text>
+                                    <Text style={responsiveStyle.orderId}>Order id : {item.orderId}</Text>
                                     <Text style={responsiveStyle.orderDate}><Text style={{orderDate:responsiveStyle.orderDate,orderedOn:responsiveStyle.orderedOn}}>Orderd On :</Text> {item.created}</Text>
                                     <Text style={responsiveStyle.address1}>{item.address}</Text>
                                     <Text style={responsiveStyle.address2}>{item.address}</Text>

@@ -17,7 +17,7 @@ import ProductScroll from "../../components/ProductScroll";
 import { useDispatch, useSelector } from "react-redux";
 import firestore  from "@react-native-firebase/firestore";
 import Snackbar from "react-native-snackbar";
-import { updateCartCount } from "../../storage/action";
+import { updateCartCount, updateWishlist } from "../../storage/action";
 
 const ProductDetails = props =>{
     const dimensions = useDimentionsContext();
@@ -30,7 +30,8 @@ const ProductDetails = props =>{
     const [productDetails, setProductDetails] = useState({})
     const scrollRef = useRef()
     const [quantity, updateQuantity] = useState(1)
-    const {userId, cartCount} = useSelector(state=>state)
+    const userId = useSelector(state=>state.userId)
+    const cartCount = useSelector(state=>state.cartCount)
     const dispatch = useDispatch()
 
     useEffect(() => {
@@ -47,11 +48,6 @@ const ProductDetails = props =>{
             },
         )
     }, []) // for changing the head
-    const handleHart = () => {
-        setHartTrue(!hart)
-        // if(hart):
-
-    }
     
     useEffect(() => {
         setProductDetails(product)
@@ -75,7 +71,7 @@ const ProductDetails = props =>{
     }
 
     const handleAddToCart = async () => {
-        console.warn('productDetails==>',productDetails);
+        // console.warn('productDetails==>',productDetails);
         await firestore().collection('Cart').where('userId','==',userId).where('productId','==',productDetails.productId).get().then(snapshot => {
             if(snapshot.empty){
                     firestore().collection('Cart').add({
@@ -107,12 +103,44 @@ const ProductDetails = props =>{
             }
         })    
     }
+    const handleAddToWishlist = async productDetails => {
+        console.warn(productDetails);
+        await firestore().collection('Wishlist').where('userId','==',userId).where('productId','==',productDetails.id).get().then(snapshot => {
+            if(snapshot.empty){
+                firestore().collection('Wishlist').add({
+                    created: Date.now(),
+                    updated: Date.now(),
+                    description:productDetails.description,
+                    name : productDetails.name,
+                    price : productDetails.price,
+                    userId: userId,
+                    productId: productDetails.id,
+                    image: productDetails.image,
+                    categoryId : productDetails.categoryId
+                }).then(()=>{
+                    dispatch(updateWishlist([...wishlist, productDetails.id]))
+                    Snackbar.show({
+                        text: 'Item added to Wishlist',
+                        backgroundColor : color.primaryGreen,
+                        duration: Snackbar.LENGTH_SHORT,
+                    });
+                })
+            }else{
+                Snackbar.show({
+                    text: 'Item already added to your Wishlist',
+                    backgroundColor : color.primaryGreen,
+                    duration: Snackbar.LENGTH_SHORT,
+                });
+            }
 
+        })
+    }
+    const wishlist = useSelector(state=>state.wishlistId)
     return(
         <View>
             <ScrollView ref={scrollRef} style={responsiveStyle.container} showsVerticalScrollIndicator={false}>
-                <TouchableOpacity style={responsiveStyle.hartView} onPress={handleHart}>
-                    {hart? <AntDesign name="hearto" size={30} color={color.red} /> : <AntDesign name="heart" size={30} color={color.red} />}
+                <TouchableOpacity style={responsiveStyle.hartView} onPress={()=>handleAddToWishlist(productDetails)}>
+                {wishlist.includes(productDetails.id) ? <AntDesign name="heart" size={35} color={color.red} style={responsiveStyle.hartImage}/>:<AntDesign name="hearto" size={25} color={color.black} style={responsiveStyle.hartImage}/>}
                 </TouchableOpacity>
                 <Image source={{uri:productDetails.image}} style={responsiveStyle.productImage}/>
                 <View style={responsiveStyle.ProductDetailsContainer}>

@@ -8,24 +8,21 @@ import { useNavigation, useRoute } from '@react-navigation/native';
 import { useDispatch, useSelector } from 'react-redux';
 import Snackbar from "react-native-snackbar";
 import color from '../common/colors';
-import { updateCartCount } from '../../storage/action';
+import { updateCartCount, updateWishlist } from '../../storage/action';
 import AntDesign from 'react-native-vector-icons/dist/AntDesign';
 
 const ProductScroll = props => {
-    const {isNavigationNeeded} = props
+    const {isNavigationNeeded, getWishlist} = props
     const dimensions = useDimentionsContext();
     const responsiveStyle = style(dimensions.windowHeight, dimensions.windowWidth);
     const [newProducts, setRecentItem] = useState([])
     const navigation = useNavigation()
     const route = useRoute()
-    const {userId, cartCount} = useSelector(state => state); // user id is important to store in cart.
+    const userId = useSelector(state => state.userId); // user id is important to store in cart.
+    const cartCount = useSelector(state => state.cartCount); // user id is important to store in cart.
+    const wishlist = useSelector(state=>state.wishlistId)
+
     const dispatch = useDispatch()
-    const [hart, setHartTrue] = useState(!false)
-    const handleHart = item => {
-        setHartTrue(!hart)
-        // if(hart):
-        console.warn(item);
-    }
     useEffect(() => {
         getItems();
     }, [])
@@ -127,8 +124,9 @@ const ProductScroll = props => {
     }
 
     const handleAddToWishlist = async productDetails => {
-        // await firestore().collection('Cart').where('userId','==',userId).where('productId','==',productDetails.id).get().then(snapshot => {
-            // if(snapshot.empty){
+        // console.warn(productDetails.id);
+        await firestore().collection('Wishlist').where('userId','==',userId).where('productId','==',productDetails.id).get().then(snapshot => {
+            if(snapshot.empty){
                 firestore().collection('Wishlist').add({
                     created: Date.now(),
                     updated: Date.now(),
@@ -140,16 +138,26 @@ const ProductScroll = props => {
                     image: productDetails.image,
                     categoryId : productDetails.categoryId
                 }).then(()=>{
+                    dispatch(updateWishlist([...wishlist, productDetails.id]))
+
                     Snackbar.show({
                         text: 'Item added to Wishlist',
                         backgroundColor : color.primaryGreen,
                         duration: Snackbar.LENGTH_SHORT,
                     });
                 })
+            }else{
+                Snackbar.show({
+                    text: 'Item already added to your Wishlist',
+                    backgroundColor : color.primaryGreen,
+                    duration: Snackbar.LENGTH_SHORT,
+                });
             }
 
-        // })
-    // }
+        })
+    }
+
+    
     return(
         <View style={responsiveStyle.container}>
             {/* <View style={responsiveStyle.headView}>
@@ -171,11 +179,12 @@ const ProductScroll = props => {
                     keyExtractor={(itemId, index)=>String(index)}
                     showsHorizontalScrollIndicator={false} 
                     renderItem={({item, index})=>{
+                        
                     return(
 
                         <TouchableOpacity style={responsiveStyle.flatListContainer} onPress={()=>handleNavigate(item)}>
                             <TouchableOpacity onPress={()=>handleAddToWishlist(item)}>
-                                {hart? <AntDesign name="hearto" size={25} color={color.black} style={responsiveStyle.hartImage}/> : <AntDesign name="heart" size={25} color={color.red} style={responsiveStyle.hartImage}/>}
+                                {wishlist.includes(item.id) ? <AntDesign name="heart" size={25} color={color.red} style={responsiveStyle.hartImage}/>:<AntDesign name="hearto" size={25} color={color.black} style={responsiveStyle.hartImage}/>}
                             </TouchableOpacity>
                             <Image source={{uri:item.image}} style={responsiveStyle.itemImages}/>
                             <Text numberOfLines={1} style={responsiveStyle.itemName}>{item.name}</Text>

@@ -25,7 +25,12 @@ const AddAddress = () =>{
     const [getAddress, setAddress] = useState('')
     const route = useRoute()
     const {cartItem, total, charges} = route.params
-    const {firstName, lastName, email, mobilenumber, userId} = useSelector(state => state); // we can aceess the global state like this
+    const firstName = useSelector(state => state.firstName); // we can aceess the global state like this
+    const lastName = useSelector(state => state.lastName); // we can aceess the global state like this
+    const email = useSelector(state => state.email); // we can aceess the global state like this
+    const mobilenumber = useSelector(state => state.mobilenumber); // we can aceess the global state like this
+    const userId = useSelector(state => state.userId); // we can aceess the global state like this
+
     const responsiveStyle = style(dimensions.windowHeight, dimensions.windowWidth)
     const [loading, setLoading] = useState(false)
     const dispatch = useDispatch()

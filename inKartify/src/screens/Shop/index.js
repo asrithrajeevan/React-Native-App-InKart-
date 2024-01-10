@@ -15,7 +15,7 @@ const Shop = props => {
     const navigation = useNavigation()
     const dimensions = useDimentionsContext();
     const responsiveStyle = style(dimensions.windowHeight, dimensions.windowWidth, dimensions.portrait);
-    const {updateCategories} = useSelector(state => state);
+    const updateCategories = useSelector(state => state.updateCategories);
     // console.warn(updateCategories);
     const route = useRoute() 
     const {type} = route.params //Passing type from navigation
@@ -67,7 +67,7 @@ const Shop = props => {
 
     // Filter items according to the category
     const handleCategoryItemId = async (item) => {
-        console.warn(item.id);
+        // console.warn(item.id);
         setHead(item.name)
         await firestore().collection('Product').where('categoryId','==',item.id).get().then(snapshot=>{
             if(!snapshot.empty){

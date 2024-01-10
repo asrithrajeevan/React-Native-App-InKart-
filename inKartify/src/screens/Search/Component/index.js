@@ -38,7 +38,7 @@ const TrendingItem = () => {
     //         }
     //     }).catch(err =>console.log(err))
     // } 
-    const {updateCategories} = useSelector(state => state);
+    const updateCategories = useSelector(state => state.updateCategories);
 
     return(
         <View style={responsiveStyle.container}>

@@ -16,7 +16,11 @@ const Cart = () => {
     const dimensions = useDimentionsContext();
     const responsiveStyle = style(dimensions.windowHeight, dimensions.windowWidth)
     const [cartItem, setCartItem]= useState(0)
-    const {userId, cartCount, email, mobilenumber} = useSelector(state=>state)
+    const userId = useSelector(state=>state.userId)
+    const cartCount = useSelector(state=>state.cartCount)
+    const email = useSelector(state=>state.email)
+    const mobilenumber = useSelector(state=>state.mobilenumber)
+
     const dispatch = useDispatch()
     const navigation = useNavigation()
     const [total, setTotal] = useState(0)
@@ -30,7 +34,7 @@ const Cart = () => {
         }
     // re-render this page whenever we came the page
     const isFocused = useIsFocused()
-    console.warn('isFocused---',isFocused);
+    // console.warn('isFocused---',isFocused);
     useEffect(()=> {
         if(isFocused){
             getCartProduct()
@@ -184,12 +188,11 @@ const Cart = () => {
 
 
 const RenderItem = ({item, index, updateArray, handleTotal})=>{
-    // console.warn('item.id--->',item);
     const dimensions = useDimentionsContext();
     const responsiveStyle = style(dimensions.windowHeight, dimensions.windowWidth);
     const [qun, setQun] = useState(item.quantity)
     const navigation = useNavigation()
-    const {userId} = useSelector(state => state); // user id is important to store in cart.
+    const userId = useSelector(state => state.userId); // user id is important to store in cart.
     
     useEffect(()=>{
         setQun(item.quantity)

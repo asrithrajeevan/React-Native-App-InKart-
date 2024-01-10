@@ -9,13 +9,14 @@ import { useDispatch, useSelector } from "react-redux";
 import CommonEmpty from "../../components/CommonEmpty";
 import Snackbar from "react-native-snackbar";
 import color from "../../components/common/colors";
-import { updateCartCount } from "../../storage/action";
+import { updateCartCount, updateWishlist } from "../../storage/action";
 import HeaderCommonRight from "../../components/CommonHeaderRight";
 
 const Wishlist = () => {
     const dimensions = useDimentionsContext();
     const responsiveStyle = style(dimensions.windowHeight, dimensions.windowWidth, dimensions.portrait);
-    const {userId, cartCount} = useSelector(state => state); // user id is important to store in cart.
+    const userId = useSelector(state => state.userId); // user id is important to store in cart.
+
     const navigation = useNavigation()
     const [getWishlist, setWishlistItem] = useState()
     const dispatch = useDispatch()
@@ -108,6 +109,7 @@ const Wishlist = () => {
     })}
 
     const removeFromWishlist = async item => {
+        // dispatch(updateWishlist)
         await firestore().collection('Wishlist').doc(item.id).delete().then(()=>{
             // getWishlistItem() // we can recall cart API after delete the data but it is more time taking purposes, so the below is more efficient
             // filtering the array item in the whishlist after delete element

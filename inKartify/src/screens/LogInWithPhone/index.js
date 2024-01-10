@@ -31,7 +31,7 @@ const LogInWithPhone = () => {
 
             if(validatePhoneNumber(userPhone)){
                 const confirmation = await auth().signInWithPhoneNumber(userPhone);
-                console.warn(confirmation); // If we get the confirmation after provide the number to the firebase all are success.
+                // console.warn(confirmation); // If we get the confirmation after provide the number to the firebase all are success.
                 if(confirmation){
                     Snackbar.show({
                         text: 'OTP Sent Successfully',
@@ -45,7 +45,7 @@ const LogInWithPhone = () => {
                 errorSet('Given Phone number is Incorrect...')
             }
         } catch (error) {
-            console.warn(error);
+            // console.warn(error);
             errorSet('Given Phone number is Incorrect...')
         }
     }
@@ -54,7 +54,7 @@ const LogInWithPhone = () => {
         if(OTP.trim() !== '' && hasSpecialCharacter(OTP.trim())){
             try {
                 const res =  await confirm.confirm(OTP.trim());
-                console.warn('res-->',res);
+                // console.warn('res-->',res);
                 if(res){        // if the res have values or true the given otp is correct.
                     Snackbar.show({
                         text: 'Your phone number is verified, loging successfull',
@@ -64,7 +64,7 @@ const LogInWithPhone = () => {
                     navigation.navigate("Home") // navigating to the dashbord or home page after successfull registration
                 }
             } catch (error) {
-                console.warn('error--->',error)
+                // console.warn('error--->',error)
                 Snackbar.show({
                     text: 'OTP is incorrect plese try again',
                     backgroundColor : color.red,

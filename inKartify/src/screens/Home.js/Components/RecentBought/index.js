@@ -35,7 +35,8 @@ const RecentItems = () => {
                 // console.log(snapshot.docs)
                 snapshot.docs.forEach(item =>{
                     if(item.exists){
-                        result.push(item.data())
+                        const respData = {id : item.id, ...item.data()}
+                        result.push(respData)
                     }
                 })
                 setRecentItem(result)

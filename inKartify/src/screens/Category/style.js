@@ -19,7 +19,7 @@ const style = (height, width, portrait) => StyleSheet.create({
         justifyContent:'center',
         alignItems:'center',
         marginRight:10,
-        borderRadius:10
+        borderRadius:10,
     },
     catImage:{
         width: portrait? width*0.23 : width*0.2, 
@@ -28,10 +28,10 @@ const style = (height, width, portrait) => StyleSheet.create({
         marginVertical:10,
     },
     catImageTouch: {
-        borderColor:color.black_level_3,
+        borderColor:color.LightGreen,
         justifyContent:'center',
         alignItems:'center',
-        borderRadius:10,
+        borderRadius:15,
     },
     containerRowStyle:{
         flexDirection:'row',

@@ -9,7 +9,7 @@ const style = StyleSheet.create({
     container : {
         backgroundColor : color.white_level_3,
         // marginBottom:50
-        height:'90%'
+        height:'500%',
     },
     footerView : {
         margin:15,

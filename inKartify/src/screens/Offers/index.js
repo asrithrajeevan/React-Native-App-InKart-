@@ -7,7 +7,7 @@ import { useNavigation } from "@react-navigation/native";
 import HeaderCommonLeft from "../../components/CommonHeaderLeft";
 
 const Offers = () => {
-     const dimensions = useDimentionsContext();
+    const dimensions = useDimentionsContext();
     const responsiveStyle = style(dimensions.windowHeight, dimensions.windowWidth, dimensions.portrait);
     const navigation = useNavigation()
     useEffect(()=>{

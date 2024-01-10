@@ -12,8 +12,10 @@ const CustomFooter = ({state, descriptors, navigation}) => {
     // })
     const dimensions = useDimentionsContext()
     const responsiveStyle = style(dimensions.windowHeight, dimensions.windowWidth, dimensions.portrait)
-    const {cartCount, userId} = useSelector(state => state)
-    console.warn('cartCount->->',cartCount);
+    const cartCount = useSelector(state => state.cartCount)
+    const userId = useSelector(state => state.userId)
+
+    // console.warn('cartCount->->',cartCount);
     const dispatch = useDispatch()
     
     useEffect(()=>{

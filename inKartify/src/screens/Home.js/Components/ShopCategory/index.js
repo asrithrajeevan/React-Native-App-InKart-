@@ -27,13 +27,13 @@ const ShopCategory = () => {
                 snapshot.docs.forEach(item =>{
                     if(item.exists){
                         const responseData = {id:item.id, ...item?.data()} // by writing like this we could get whole data with its firbase id
-                        console.warn('responseData===}',responseData);
+                        // console.warn('responseData===}',responseData);
                         // result.push(item.data())
                         result.push(responseData)
                     }
                 })
                 setCategories(result)
-                console.warn('result-categories',result);
+                // console.warn('result-categories',result);
                 dispatch(updateCategories(result)) // storing our categories to redux
             }
         }).catch(err =>console.log(err))

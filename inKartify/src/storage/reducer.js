@@ -1,4 +1,4 @@
-import { LOGIN, SIGNOUT, UPDATECATEGORIES, UPDATEPROFILE, UPDATECARTCOUNT} from "./constance";
+import { LOGIN, SIGNOUT, UPDATECATEGORIES, UPDATEPROFILE, UPDATECARTCOUNT, UPDATEWISHLIST} from "./constance";
 
 const initialState = {
     userId : '',
@@ -9,7 +9,8 @@ const initialState = {
     profileImage : '',
     isLoged : false,
     updateCategories : [],
-    cartCount : 0
+    cartCount : 0,
+    wishlistId : []
 }
 export const InKartReducer = (state = initialState, action) =>{
 
@@ -55,6 +56,11 @@ export const InKartReducer = (state = initialState, action) =>{
             return{
                 ...state,
                 cartCount : action.payload.cartCount,
+            }
+        case UPDATEWISHLIST:
+            return{
+                ...state,
+                wishlistId : [...action.payload.wishlistId]
             }
         default:
             return state;

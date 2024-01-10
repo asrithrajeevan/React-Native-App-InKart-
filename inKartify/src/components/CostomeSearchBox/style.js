@@ -24,7 +24,7 @@ const style = (height, width) => StyleSheet.create({
         padding:5,
         width : width*0.95,
         height : 50,
-        overflow:'hidden'
+        overflow:'hidden',
 
     },
     newSearch:{
@@ -48,14 +48,17 @@ const style = (height, width) => StyleSheet.create({
     micIcon :{ 
         marginRight:5,
         width : 25,
-        height : 25
+        height : 25,
+        position:'absolute',
+        right:5
     },
     textInput : {
         marginLeft:10,
         fontFamily:'Lato-Regular',
         fontSize: 18,
         height : 80,
-        color:color.primaryGreen
+        color:color.primaryGreen,
+        flex:1
     },
     innerSearch: {
         flexDirection:'row',

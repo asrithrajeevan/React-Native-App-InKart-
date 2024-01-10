@@ -6,7 +6,7 @@ const styles = (height, width, portrait) => StyleSheet.create({
         color : color.black_level_3,
         fontSize : 16,
         fontFamily : 'Lato-Regular',
-        width : '87%',
+        flex:1,
     },
     container: {
         flexDirection : 'row',

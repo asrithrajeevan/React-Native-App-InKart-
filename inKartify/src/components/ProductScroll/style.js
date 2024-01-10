@@ -28,7 +28,7 @@ const style = (height, width) => StyleSheet.create({
     hartImage:{
         width:25,
         height:25,
-        resizeMode:'contain', 
+        // resizeMode:'contain', 
         alignSelf:'flex-end'
     },
     itemImages :{

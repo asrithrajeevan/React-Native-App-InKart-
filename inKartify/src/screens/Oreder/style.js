@@ -6,6 +6,9 @@ const style = (height, width, portrait)=> StyleSheet.create({
     container : {
         backgroundColor : color.white_level_3
     },
+    FlatListStyle:{
+        paddingBottom:100
+    },
     flatView:{
         backgroundColor:color.lightGreen, 
         marginHorizontal:15,
@@ -25,41 +28,45 @@ const style = (height, width, portrait)=> StyleSheet.create({
         paddingBottom:10
     },
     orderId:{
-        fontFamily:'Lato-Regilar', 
+        fontFamily:'Lato-Regular', 
         fontSize:15, 
         fontWeight:'700'
     },
     orderDate:{
-        fontFamily:'Lato-Regilar', 
+        fontFamily:'Lato-Regular', 
         fontSize:14, 
-        color:color.Green
+        color:color.primaryGreen,
     },
     orderedOn:{
         fontWeight:'700'
     },
     address1:{
-        fontFamily:'Lato-Regilar', 
+        fontFamily:'Lato-Regular', 
         fontSize:14, 
         color:color.grey
     },
     address2:{
-        fontFamily:'Lato-Regilar', 
-        fontSize:14, color:color.grey
+        fontFamily:'Lato-Regular', 
+        fontSize:14, 
+        color:color.grey
     },
     priceAndQuantity:{
-        fontFamily:'Lato-Regilar', 
+        fontFamily:'Lato-Regular', 
         fontSize:14, 
-        color:color.black
+        color:color.black,
     },
     price:{
-        fontFamily:'Lato-Regilar', 
+        fontFamily:'Lato-Regular', 
         fontSize:14, 
-        color:color.Green
+        color:color.primaryGreen,
+        fontWeight:'600'
     },
     quantity : {
-        fontFamily:'Lato-Regilar', 
+        fontFamily:'Lato-Regular', 
         fontSize:14, 
-        color:color.Green
+        color:color.Green,
+        fontWeight:'800'
+        
     },
     map:{
         width:85,

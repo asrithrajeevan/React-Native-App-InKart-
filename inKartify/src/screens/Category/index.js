@@ -53,7 +53,7 @@ const Category = () => {
             }
         }).catch(err =>console.log(err))
     }
-    const {updateCategories} = useSelector(state=>state)  // we can easly access the category items after storing it to redux in home page. API calling of each pages are not necessary like above, we can access whole page using useSelector once it stored it using redux.
+    const updateCategories = useSelector(state=>state.updateCategories)  // we can easly access the category items after storing it to redux in home page. API calling of each pages are not necessary like above, we can access whole page using useSelector once it stored it using redux.
 
 
     // for getting product collection from firbase
@@ -69,7 +69,7 @@ const Category = () => {
                     }
                 })
                 setProducts(result)
-                console.warn('item-------->>',result);
+                // console.warn('item-------->>',result);
 
             }
          }).catch(err =>console.log(err))
@@ -83,27 +83,30 @@ const Category = () => {
     }
     const handleNavigate = (item) =>{
         navigation.navigate('ProductDetails',{product:item})
-        console.warn('item-item->',item);
+        // console.warn('item-item->',item);
     }
     return(
         <View style={responsiveStyle.main}>
-            <View nestedScrollEnabled showsVerticalScrollIndicator={false} style={responsiveStyle.container}>
+            <ScrollView nestedScrollEnabled showsVerticalScrollIndicator={false} style={responsiveStyle.container}>
                 <CostomeSearch />
                 <View style={responsiveStyle.containerRowStyle}>
                     {/* side bar */}
                     <View>
                         <FlatList
-                        data={updateCategories}
-                        showsVerticalScrollIndicator={false}
-                        contentContainerStyle={responsiveStyle.styleFlatList}
-                        renderItem={({item,index})=>{
-                            return(
-                                // we can pass each item by using '()=> handleCategorytouch(item)'
-                                <TouchableOpacity style={[responsiveStyle.catImageTouch,{backgroundColor : index === CategoryIndex? color.white : 'transparent',borderWidth : index === CategoryIndex? 1 : 'transparent' }]} onPress={()=>handleCategorytouch(index)}>
-                                    <Image source={{uri:item.image}} style={responsiveStyle.catImage}/>
-                                </TouchableOpacity>
-                            )
-                        }}
+                            data={updateCategories}
+                            showsVerticalScrollIndicator={false}
+                            contentContainerStyle={responsiveStyle.styleFlatList}
+                            renderItem={({item,index})=>{
+                                return(
+                                    // we can pass each item by using '()=> handleCategorytouch(item)'
+                                    // <TouchableOpacity style={[responsiveStyle.catImageTouch,{backgroundColor : index === CategoryIndex? color.white : 'transparent',borderWidth : index === CategoryIndex? 1 : 'transparent' }]} onPress={()=>handleCategorytouch(index)}>
+                                    //     <Image source={{uri:item.image}} style={responsiveStyle.catImage}/>
+                                    // </TouchableOpacity>
+                                    <TouchableOpacity onPress={()=>handleCategorytouch(index)} style={[responsiveStyle.catImageTouch,{backgroundColor : index ==CategoryIndex ? color.white : 'transparent',borderWidth : index === CategoryIndex ? 5 : 0}]}>
+                                        <Image source={{uri:item.image}} style={responsiveStyle.catImage}/>
+                                    </TouchableOpacity>
+                                )
+                            }}
                         />
                     </View>
                     {/* content */}
@@ -119,7 +122,7 @@ const Category = () => {
                                     </Text>
                                 </View>
                             </ImageBackground>
-                            <FlatList 
+                            <FlatList
                                 data={products}
                                 numColumns={3}
                                 showsVerticalScrollIndicator={false}
@@ -140,7 +143,7 @@ const Category = () => {
                         </View>
                     </View>
                 </View>
-            </View>
+            </ScrollView>
         </View>
     )
 }

@@ -27,6 +27,8 @@ import Shop from '../Shop';
 import ProductDetails from '../ProductDetails';
 import Review from '../Review';
 import AddAddress from '../AddAddress';
+import OrderDetails from '../OrderDetails';
+import { Platform } from "react-native";
 
 const Drawer = createDrawerNavigator()
 const AppStack = createNativeStackNavigator()
@@ -34,10 +36,11 @@ const Footer = createBottomTabNavigator();
 
 function AppDrawer() {
   return (
-    <Drawer.Navigator drawerContent={ ()=><CustomeDrawer />} screenOptions={{headerStyle:{height:100}}} >
+    <Drawer.Navigator drawerContent={ ()=><CustomeDrawer />} screenOptions={{headerStyle:{height:Platform.OS=='ios'? 100:60}}} >
       <Drawer.Screen name="AppFooter" component={AppFooter} options={{headerShown:false}}/>
       <Drawer.Screen name="Category" component={Category}/>
       <Drawer.Screen name="Orders" component={Orders} />
+      <Drawer.Screen name="OrderDetails" component={OrderDetails} />
       <Drawer.Screen name="Wishlist" component={Wishlist} />
       <Drawer.Screen name="Account" component={Account} />
       <Drawer.Screen name="Shop" component={Shop} />
@@ -81,7 +84,7 @@ function AppFooter() {
 }
 
 const AppNavigation = () => {
-  const {isLoged} = useSelector(state => state); // we can aceess the global state like this
+  const isLoged = useSelector(state => state.isLoged); // we can aceess the global state like this
   console.warn('isLoged-->>',isLoged)
   const [loading, setLoading] = useState(true)
 
@@ -93,14 +96,14 @@ const AppNavigation = () => {
   },[isLoged])
 
     return(
-      // DimentionsContextProvider is a context provider now the value gloabally settled
+      // DimentionsContextProvider is a context provider now the value gloabally settled.
       <DimentionsContextProvider>
           <NavigationContainer>
             <AppStack.Navigator screenOptions={{headerShown:false}}>
               { loading ? (<AppStack.Screen name='Splash' component={SplashScreen} />)
               :(
                 <>
-                { isLoged ?(<AppStack.Screen name="AppDrawer" component={AppDrawer} />) : // if the is loged is equal to true we have ontly this stack else the following stack
+                { isLoged ?(<AppStack.Screen name="AppDrawer" component={AppDrawer} />) : // if the is loged is equal to true we have ontly this stack else the following stack.
                   (<>
                     <AppStack.Screen name='Login' component={Login} />
                     <AppStack.Screen name='SignUp' component={SignUp} />

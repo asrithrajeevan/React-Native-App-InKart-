@@ -8,7 +8,8 @@ const style = (height, width, portrait)=> StyleSheet.create({
     },
     hartView:{
         position:'absolute',
-        right:0,
+        right:10,
+        top : 10,
         padding:10
     },
     productImage:{
